@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Loja de Bebidas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>🍺 Bebidas do Zé</h1>
+  <a class="whatsapp" href="https://wa.me/5511999999999" target="_blank">
+    📲 WhatsApp
+  </a>
+</header>
+
+<section class="catalogo">
+  <h2>Catálogo</h2>
+
+  <div class="produto">
+    <h3>Cerveja Heineken</h3>
+    <p>R$ 8,00</p>
+    <button onclick="adicionarCarrinho('Heineken', 8)">Adicionar</button>
+  </div>
+
+  <div class="produto">
+    <h3>Vodka Smirnoff</h3>
+    <p>R$ 45,00</p>
+    <button onclick="adicionarCarrinho('Smirnoff', 45)">Adicionar</button>
+  </div>
+</section>
+
+<section class="carrinho">
+  <h2>🛒 Carrinho</h2>
+  <ul id="listaCarrinho"></ul>
+  <p>Total: R$ <span id="total">0</span></p>
+  <button onclick="finalizarCompra()">Finalizar Compra</button>
+</section>
+
+<section class="localizacao">
+  <h2>📍 Localização</h2>
+  <p>Rua das Bebidas, 123 - Centro</p>
+  <iframe 
+    src="https://www.google.com/maps?q=Rua+das+Bebidas+123&output=embed">
+  </iframe>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
