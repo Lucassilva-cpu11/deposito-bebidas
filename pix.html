@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagamento via Pix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pix-container {
+      max-width: 400px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    img {
+      margin: 20px 0;
+    }
+
+    .valor {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    button {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pix-container">
+    <h1>💸 Pagamento via Pix</h1>
+    <p>Escaneie o QR Code abaixo para pagar</p>
+
+    <img id="qrPix" width="250" alt="QR Code Pix">
+
+    <div class="valor">
+      Total: R$ <span id="valor"></span>
+    </div>
+
+    <button onclick="confirmarPagamento()">Já paguei</button>
+  </div>
+
+  <script>
+    // Código Pix Copia e Cola
+    const pixCode = `00020126330014BR.GOV.BCB.PIX0111720400264445204000053039865802BR5918Lucas Guedes Silva6009SAO PAULO62140510IQO6dz1Boe63041FFE`;
+
+    // Gera o QR Code
+    const qrUrl =
+      "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" +
+      encodeURIComponent(pixCode);
+
+    document.getElementById("qrPix").src = qrUrl;
+
+    // Recupera o total do carrinho
+    const total = localStorage.getItem("total") || "0.00";
+    document.getElementById("valor").textContent = total;
+
+    function confirmarPagamento() {
+      const mensagem =
+        "💸 *Pagamento Pix realizado*%0A" +
+        "Valor: R$ " + total;
+
+      window.open(
+        "https://wa.me/5511999999999?text=" + mensagem,
+        "_blank"
+      );
+    }
+  </script>
+
+</body>
+</html>
