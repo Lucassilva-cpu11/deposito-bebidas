@@ -19,7 +19,9 @@ function atualizarCarrinho() {
 
   document.getElementById("total").textContent = total.toFixed(2);
 }
-
 function finalizarCompra() {
-  alert("Pagamento será integrado aqui (Pix / Cartão)");
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  localStorage.setItem("total", total.toFixed(2));
+  window.location.href = "pix.html";
 }
+
