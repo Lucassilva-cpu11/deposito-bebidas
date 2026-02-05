@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagamento Pix</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="pix">
+  <h1>💸 Pagamento via Pix</h1>
+
+  <p>Escaneie o QR Code abaixo para pagar:</p>
+
+  <img src="qr-pix.png" alt="QR Code Pix" width="250">
+
+  <p><strong>Chave Pix:</strong> seuemail@pix.com</p>
+
+  <p><strong>Total:</strong> R$ <span id="valor"></span></p>
+
+  <button onclick="confirmarPagamento()">Já paguei</button>
+</section>
+
+<script>
+  document.getElementById("valor").textContent =
+    localStorage.getItem("total");
+
+  function confirmarPagamento() {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
+
+    let mensagem = "💸 *Pagamento Pix realizado*%0A%0A";
+
+    carrinho.forEach(item => {
+      mensagem += `- ${item.nome} (R$ ${item.preco})%0A`;
+    });
+
+    mensagem += `%0A*Total:* R$ ${localStorage.getItem("total")}`;
+
+    window.open(
+      "https://wa.me/5511999999999?text=" + mensagem,
+      "_blank"
+    );
+  }
+</script>
+
+</body>
+</html>
+<img id="qrPix" width="250" alt="QR Code Pix">
+
+<script>
+  const pixCode = `00020126330014BR.GOV.BCB.PIX0111720400264445204000053039865802BR5918Lucas Guedes Silva6009SAO PAULO62140510IQO6dz1Boe63041FFE`;
+
+  const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" 
+                + encodeURIComponent(pixCode);
+
+  document.getElementById("qrPix").src = qrUrl;
+</script>
